@@ -1,0 +1,16 @@
+public class Main {
+
+    private static final List<String> data = new Reader(new File("data.txt")).data;
+    public static void main(String[] args) {
+        double number = 50d;
+        double nultime = 0;
+        for (String turn: data) {
+            String[] split = turn.split("",2);
+            double num = Integer.parseInt(split[1]) * (split[0].equals("L") ? -1 : 1);
+            number += num;
+            if (number % 100 == 0d) nultime++;
+            System.out.println(number);
+        }
+        System.out.println(nultime);
+    }
+}
