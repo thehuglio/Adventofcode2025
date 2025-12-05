@@ -1,0 +1,32 @@
+package org.thehuglio;
+import java.io.File;
+import java.util.*;
+
+public class Main {
+
+    private static final List<String> data = new Reader(new File("data.txt")).data;
+    public static void main(String[] args) {
+        System.out.println(data);
+        long invalid = 0;
+        for (String range : data.get(0).split(",")) {
+            long num = Long.parseLong(range.split("-")[0]);
+            long end = Long.parseLong(range.split("-")[1]);
+            while (num <= end) {
+                if (!isvalid(num)) invalid += num;
+                num++;
+            }
+        }
+        System.out.println(invalid);
+    }
+    public static Boolean isvalid(long num) {
+        String numstring = String.valueOf((long) num);
+        String[] split = numstring.split("");
+        if (split.length % 2 == 0) {
+            for (int i = 0; i < split.length/2; i++) {
+                if (!split[i].equals(split[i+(split.length/2)])) return true;
+            }
+            return false;
+        }
+        else return true;
+    }
+}
