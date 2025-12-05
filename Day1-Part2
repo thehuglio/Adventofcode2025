@@ -1,0 +1,33 @@
+package org.thehuglio;
+import java.io.File;
+import java.util.*;
+
+public class Main {
+
+    private static final List<String> data = new Reader(new File("data.txt")).data;
+    public static void main(String[] args) {
+        double number = 50d;
+        double nultime = 0;
+        boolean negative = false;
+        boolean waszero = false;
+        for (String turn: data) {
+            String[] split = turn.split("",2);
+            double num = Integer.parseInt(split[1]) * (split[0].equals("L") ? -1 : 1);
+            number += num;
+            int p = (int) number/100;
+            if (!waszero) {
+                if ((number < 0) != negative && number != 0) {
+                    nultime++; negative = number < 0;}
+            } else {
+                negative = number < 0;
+            }
+            nultime += p<0 ? -p : p;
+            if (number == 0) nultime++;
+            number -= p * 100;
+            waszero = number == 0;
+            System.out.println(number);
+            System.out.println(nultime);
+        }
+        System.out.println(nultime);
+    }
+}
