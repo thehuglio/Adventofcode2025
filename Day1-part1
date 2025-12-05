@@ -9,7 +9,6 @@ public class Main {
             double num = Integer.parseInt(split[1]) * (split[0].equals("L") ? -1 : 1);
             number += num;
             if (number % 100 == 0d) nultime++;
-            System.out.println(number);
         }
         System.out.println(nultime);
     }
