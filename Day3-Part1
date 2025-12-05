@@ -1,0 +1,31 @@
+package org.thehuglio;
+import java.io.File;
+import java.util.*;
+
+public class Main {
+
+    private static final List<String> data = new Reader(new File("data.txt")).data;
+    public static void main(String[] args) {
+        long tot = 0;
+        for (String s : data) {
+            String[] split = s.split("");
+            int firstsafe = 0;
+            int first = 0;
+            int second = 0;
+            for (String string : split) {
+                int i = Integer.parseInt(string);
+                if (first <= i) {
+                    second = 0;
+                    firstsafe = first;
+                    first = i;
+                } else if (second < i) {
+                    second = i;
+                }
+            }
+            if (second == 0 || firstsafe == first) tot += Integer.parseInt(String.valueOf(firstsafe)+first);
+            else tot += Integer.parseInt(String.valueOf(first)+second);
+
+        }
+        System.out.println(tot);
+    }
+}
